@@ -41,6 +41,12 @@ Automation-Testing/
 └── README.md
 
 ## Features Tested
+- Login Automation
+- Cart Automation
+- Checkout Automation
+- Inventory Validation
+- Product Details Validation
+- Burger Menu Validation
 
 ### Authentication
 - Login
@@ -74,7 +80,20 @@ Automation-Testing/
 - Facebook
 - LinkedIn
 
+## Installation
+
+``terminal
+git clone ...
+cd Automation-Testing
+pip install -r requirements.txt
+playwright install
+
+## CI/CD
+
+This project uses GitHub Actions to automatically execute the test suite whenever code is pushed to the repository.
+
 ## Reports
+After execution, HTML reports and Playwright traces are generated for debugging.
 
 Generate an HTML report
 
