@@ -20,7 +20,7 @@ def test_add_to_cart(backpack_in_cart):
 def test_remove_from_cart(backpack_in_cart):
 
     expect(backpack_in_cart).to_have_url(re.compile(r".*inventory\.html"))
-    backpack_in_cart.locator('[data-test="remove-sauce-labs-backpack"]').click()
+    backpack_in_cart.locator('[data-test="remove-sauce-labs-backpacks"]').click()
     expect(backpack_in_cart.locator('[data-test="shopping-cart-badge"]')).to_have_count(
         0
     )
@@ -29,7 +29,7 @@ def test_remove_from_cart(backpack_in_cart):
     expect(backpack_in_cart.get_by_text("Sauce Labs Backpack")).not_to_be_visible()
 
 
-@pytest.mark.regresssion
+@pytest.mark.regression
 @pytest.mark.cart
 def test_cart_badge(logged_in_page):
 

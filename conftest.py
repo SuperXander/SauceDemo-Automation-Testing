@@ -1,6 +1,8 @@
 import pytest
 import re
+import os
 from playwright.sync_api import sync_playwright, expect
+from datetime import datetime
 from utils import login
 
 
@@ -10,7 +12,7 @@ def page():
     with sync_playwright() as p:
 
         browser = p.chromium.launch(
-            headless=True,
+            headless=False,
         )
 
         context = browser.new_context()
@@ -103,3 +105,27 @@ def successful_checkout(checkout_overview):
     expect(checkout_overview).to_have_url(re.compile(r".*checkout-complete\.html"))
 
     return checkout_overview
+
+
+@pytest.hookimpl(hookwrapper=True)
+def pytest_runtest_makereport(item, call):
+    outcome = yield
+    report = outcome.get_result()
+
+    if report.when == "call" and report.failed:
+
+        page = item.funcargs.get("page")
+
+        if page:
+
+            screenshots_dir = "Reports/Screenshots"
+            os.makedirs(screenshots_dir, exist_ok=True)
+
+            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+
+            screenshot_path = os.path.join(
+                screenshots_dir,
+                f"{item.name}_{timestamp}.png"
+            )
+
+            page.screenshot(path=screenshot_path)
