@@ -104,7 +104,10 @@ This project uses GitHub Actions to automatically execute the test suite wheneve
 
 ### Browser Automation
 
-![Browser Automation](assets/screenshots/browser-automation.png)
+![Browser Automation](assets/screenshots/browser-automation1.png)
+![Browser Automation](assets/screenshots/browser-automation2.png)
+![Browser Automation](assets/screenshots/browser-automation3.png)
+![Browser Automation](assets/screenshots/browser-automation4.png)
 
 ### HTML Report
 
