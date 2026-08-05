@@ -156,10 +156,8 @@ Run tests in parallel
 python -m pytest -n auto
 ```
 
-## Future Improvements
+## Conclusion
 
-- Implement the Page Object Model (POM)
-- Integrate GitHub Actions for CI/CD
-- Expand test coverage
-- Add API testing
-- Add cross-browser execution
+This project was developed as a hands-on learning exercise to gain practical experience with Playwright, Pytest, Git, GitHub, and GitHub Actions.
+
+It demonstrates the fundamentals of building and maintaining an automated UI testing project, including reusable test utilities, reporting, failure diagnostics, and continuous integration.
