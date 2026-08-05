@@ -1,9 +1,21 @@
 import pytest
 import re
 import os
+import shutil
+import pytest_html
 from playwright.sync_api import sync_playwright, expect
 from datetime import datetime
 from utils import login
+
+  # Clean up function to remove old reports and create new directories for screenshots, logs, and videos
+# def pytest_sessionstart(session):
+#     folders = ["Reports/Screenshots", "Reports/Logs", "Reports/Videos"]
+
+#     for folder in folders:
+#         if os.path.exists(folder):
+#             shutil.rmtree(folder)
+
+#         os.makedirs(folder)
 
 
 @pytest.fixture
@@ -23,7 +35,25 @@ def page():
             sources=True,
         )
 
+        console_logs = []
+
+        page.on("console",lambda msg: console_logs.append(f"[{msg.type}] {msg.text}"))
+
+        if console_logs:
+
+            os.makedirs("Reports/Logs", exist_ok=True)
+
+        with open(
+                f"Reports/Logs/{datetime.now().strftime('%Y%m%d_%H%M%S')}.log",
+                "w",
+                encoding="utf8"
+            ) as f:
+
+                f.write("\n".join(console_logs))
+
         page = context.new_page()
+
+        context = browser.new_context(record_video_dir="Reports/Videos/")
 
         yield page
 
@@ -123,9 +153,30 @@ def pytest_runtest_makereport(item, call):
 
             timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
 
+            filename = f"FAILED_{item.name}_{timestamp}.png"
             screenshot_path = os.path.join(
                 screenshots_dir,
-                f"{item.name}_{timestamp}.png"
+                filename
             )
 
             page.screenshot(path=screenshot_path)
+            print(f"\n📸 Screenshot saved:")
+            print(screenshot_path)
+            print(f"🌍 URL: {page.url}")
+            print(f"📄 Title: {page.title()}")
+
+            extras = getattr(report, "extras", [])
+
+            extras.append(pytest_html.extras.image(screenshot_path))
+
+            report.extras = extras
+
+def pytest_configure(config):
+
+    config._metadata["Project"] = "SauceDemo"
+
+    config._metadata["Tester"] = "Mfundo Sabela"
+
+    config._metadata["Framework"] = "Playwright + Pytest"
+
+    config._metadata["Browser"] = "Chromium"
