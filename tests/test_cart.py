@@ -29,7 +29,7 @@ def test_remove_from_cart(backpack_in_cart):
     expect(backpack_in_cart.get_by_text("Sauce Labs Backpack")).not_to_be_visible()
 
 
-@pytest.mark.regresssion
+@pytest.mark.regression
 @pytest.mark.cart
 def test_cart_badge(logged_in_page):
 
