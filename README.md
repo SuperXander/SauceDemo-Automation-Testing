@@ -92,6 +92,28 @@ playwright install
 
 This project uses GitHub Actions to automatically execute the test suite whenever code is pushed to the repository.
 
+## Screenshots
+
+### Project Structure
+
+![Project Structure](assets/screenshots/project-structure.png)
+
+### Test Execution
+
+![Test Execution](assets/screenshots/terminal-tests.png)
+
+### Browser Automation
+
+![Browser Automation](assets/screenshots/browser-automation.png)
+
+### HTML Report
+
+![HTML Report](assets/screenshots/html-report.png)
+
+### GitHub Actions
+
+![GitHub Actions](assets/screenshots/github-actions.png)
+
 ## Reports
 After execution, HTML reports and Playwright traces are generated for debugging.
 
