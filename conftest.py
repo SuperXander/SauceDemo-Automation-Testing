@@ -43,7 +43,7 @@ def page():
             with open(log_filename, "w", encoding="utf8") as f:
                 f.write("\n".join(console_logs))
 
-        context.tracing.stop(path="Reports/trace.zip")
+        context.tracing.stop(path="Reports/Trace/trace.zip")
         context.close()
         browser.close()
 
