@@ -19,7 +19,7 @@ from utils import login
 @pytest.fixture
 def page():
     with sync_playwright() as p:
-        browser = p.chromium.launch(headless=False, slow_mo=500)
+        browser = p.chromium.launch(headless=True)
         context = browser.new_context(record_video_dir="Reports/Videos/")
 
         context.tracing.start(
