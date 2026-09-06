@@ -71,6 +71,12 @@ uv sync
 Run commands through the project's managed environment using `uv run`.
 
 ## Features Tested
+- Login Automation
+- Cart Automation
+- Checkout Automation
+- Inventory Validation
+- Product Details Validation
+- Burger Menu Validation
 
 ### Authentication
 
@@ -110,7 +116,45 @@ Run commands through the project's managed environment using `uv run`.
 * Facebook
 * LinkedIn
 
+## Installation
+
+``terminal
+git clone ...
+cd Automation-Testing
+pip install -r requirements.txt
+playwright install
+
+## CI/CD
+
+This project uses GitHub Actions to automatically execute the test suite whenever code is pushed to the repository.
+
+## Screenshots
+
+### Project Structure
+
+![Project Structure](assets/screenshots/project-structure.png)
+
+### Test Execution
+
+![Test Execution](assets/screenshots/terminal-tests.png)
+
+### Browser Automation
+
+![Browser Automation](assets/screenshots/browser-automation1.png)
+![Browser Automation](assets/screenshots/browser-automation2.png)
+![Browser Automation](assets/screenshots/browser-automation3.png)
+![Browser Automation](assets/screenshots/browser-automation4.png)
+
+### HTML Report
+
+![HTML Report](assets/screenshots/html-report.png)
+
+### GitHub Actions
+
+![GitHub Actions](assets/screenshots/github-actions.png)
+
 ## Reports
+After execution, HTML reports and Playwright traces are generated for debugging.
 
 ### Generate an HTML Report
 
@@ -148,23 +192,8 @@ uv run pytest -m checkout
 uv run pytest -n auto
 ```
 
-## Continuous Integration
+## Conclusion
 
-The project uses GitHub Actions to automatically execute the Playwright test suite when changes are pushed to the main branch or submitted through a pull request.
+This project was developed as a hands-on learning exercise to gain practical experience with Playwright, Pytest, Git, GitHub, and GitHub Actions.
 
-The workflow:
-
-1. Checks out the repository
-2. Sets up uv and Python
-3. Synchronizes dependencies from `pyproject.toml` and `uv.lock`
-4. Installs Playwright browsers
-5. Executes the test suite
-6. Uploads test traces as workflow artifacts
-
-## Future Improvements
-
-* Implement the Page Object Model (POM)
-* Expand test coverage
-* Add API testing
-* Add cross-browser execution
-* Improve test reporting and CI/CD capabilities
+It demonstrates the fundamentals of building and maintaining an automated UI testing project, including reusable test utilities, reporting, failure diagnostics, and continuous integration.
