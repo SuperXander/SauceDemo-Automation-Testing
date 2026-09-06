@@ -2,120 +2,169 @@
 
 This project was created to learn and practice web automation testing using Playwright and Pytest.
 
-It demonstrates an end-to-end automation framework built with Python, Pytest, and Playwright, featuring reusable fixtures, 
-utilities, assertions, HTML reporting, tracing, screenshots, parallel execution, and automated testing against the SauceDemo application.
+It demonstrates an end-to-end automation testing framework built with Python, Pytest, and Playwright, featuring reusable fixtures, utilities, assertions, HTML reporting, tracing, screenshots, parallel execution, and automated testing against the SauceDemo application.
 
 ## Testing Scope
 
 This project demonstrates the following testing types:
 
-| Testing Type | Coverage |
-|-------------|----------|
-| Functional Testing | Login, Logout, Inventory, Cart, Checkout |
-| UI Testing | Product information, Product details, Navigation, Burger Menu |
+| Testing Type             | Coverage                                                         |
+| ------------------------ | ---------------------------------------------------------------- |
+| Functional Testing       | Login, Logout, Inventory, Cart, Checkout                         |
+| UI Testing               | Product information, Product details, Navigation, Burger Menu    |
 | End-to-End (E2E) Testing | Complete user journey from Login → Checkout → Order Confirmation |
-| Smoke Testing | Critical user flows using Pytest markers |
-| Regression Testing | Full automation suite executed with all tests |
+| Smoke Testing            | Critical user flows using Pytest markers                         |
+| Regression Testing       | Full automation suite executed with all tests                    |
 
 ## Technologies
 
-- Python 3.14
-- Playwright
-- Pytest
-- Pytest HTML
-- Pytest-xdist
-- Black Formatter
-- Git
+* Python 3.13
+* Playwright
+* Pytest
+* Pytest HTML
+* Pytest Base URL
+* Pytest Metadata
+* Pytest Playwrightcls
+* Git
+* GitHub Actions
+* uv
 
 ## Project Structure
 
+```text
 Automation-Testing/
 │
+├── .github/
+│   └── workflows/
+│       └── playwright.yml
+│
 ├── tests/
-├── reports/
+├── assets/
 ├── downloads/
+├── Reports/
 ├── conftest.py
 ├── utils.py
 ├── pytest.ini
-├── requirements.txt
+├── .gitignore
+├── .python-version
+├── pyproject.toml
+├── uv.lock
 └── README.md
+```
+
+## Environment & Dependency Management
+
+This project uses [uv](https://docs.astral.sh/uv/) for Python environment and dependency management.
+
+The following files define the project environment:
+
+* `.python-version` - Specifies the Python version used by the project.
+* `pyproject.toml` - Defines project metadata and direct dependencies.
+* `uv.lock` - Locks the resolved dependency versions for reproducible environments.
+
+Install and synchronize the project environment with:
+
+```terminal
+uv sync
+```
+
+Run commands through the project's managed environment using `uv run`.
 
 ## Features Tested
 
 ### Authentication
-- Login
-- Invalid Login
-- Logout
+
+* Login
+* Invalid Login
+* Logout
 
 ### Inventory
-- Product information
-- Product details
-- Sorting
-- Cart badge
+
+* Product information
+* Product details
+* Sorting
+* Cart badge
 
 ### Cart
-- Add to cart
-- Remove from cart
+
+* Add to cart
+* Remove from cart
 
 ### Checkout
-- Successful checkout
-- Invalid checkout
-- Checkout navigation
-- PDF order download
+
+* Successful checkout
+* Invalid checkout
+* Checkout navigation
+* PDF order download
 
 ### Menu & Navigation
-- Burger menu
-- About
-- All Items
-- Reset App State
+
+* Burger menu
+* About
+* All Items
+* Reset App State
 
 ### External Links
-- Twitter
-- Facebook
-- LinkedIn
+
+* Twitter
+* Facebook
+* LinkedIn
 
 ## Reports
 
-Generate an HTML report
+### Generate an HTML Report
 
 ```terminal
-python -m pytest --html=reports/report.html --self-contained-html
+uv run pytest --html=Reports/HTML/report.html --self-contained-html
 ```
 
-View Playwright Trace
+### View Playwright Trace
 
 ```terminal
-playwright show-trace reports/trace.zip
+uv run playwright show-trace Reports/Traces/trace.zip
 ```
 
-Run all tests
+### Run All Tests
 
 ```terminal
-python -m pytest
+uv run pytest
 ```
 
-Run smoke tests
+### Run Smoke Tests
 
 ```terminal
-python -m pytest -m smoke
+uv run pytest -m smoke
 ```
 
-Run checkout tests
+### Run Checkout Tests
 
 ```terminal
-python -m pytest -m checkout
+uv run pytest -m checkout
 ```
 
-Run tests in parallel
+### Run Tests in Parallel
 
 ```terminal
-python -m pytest -n auto
+uv run pytest -n auto
 ```
+
+## Continuous Integration
+
+The project uses GitHub Actions to automatically execute the Playwright test suite when changes are pushed to the main branch or submitted through a pull request.
+
+The workflow:
+
+1. Checks out the repository
+2. Sets up uv and Python
+3. Synchronizes dependencies from `pyproject.toml` and `uv.lock`
+4. Installs Playwright browsers
+5. Executes the test suite
+6. Uploads test traces as workflow artifacts
 
 ## Future Improvements
 
-- Implement the Page Object Model (POM)
-- Integrate GitHub Actions for CI/CD
-- Expand test coverage
-- Add API testing
-- Add cross-browser execution
+* Implement the Page Object Model (POM)
+* Expand test coverage
+* Add API testing
+* Add cross-browser execution
+* Improve test reporting and CI/CD capabilities

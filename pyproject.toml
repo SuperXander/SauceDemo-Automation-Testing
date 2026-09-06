@@ -1,0 +1,19 @@
+[project]
+name = "automation-testing"
+version = "0.1.0"
+description = "Playwright automation testing framework using pytest"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "playwright>=1.62.0",
+    "pytest>=9.1.1",
+]
+
+[dependency-groups]
+dev = [
+    "pytest-base-url>=2.1.0",
+    "pytest-html>=4.2.0",
+    "pytest-metadata>=3.1.1",
+    "pytest-playwright>=0.8.0",
+    "pytest-xdist>=3.8.0",
+]
